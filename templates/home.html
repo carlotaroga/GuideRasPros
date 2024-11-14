@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}USpeakPy Web - Home{% endblock %}
+<!-- Bloque para CSS específico de cada página -->
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="main-container">
+    <div class="section-1">
+      <h1>What is USpeakPy?</h1>
+      <p>USpeakPy is python package that allows to complete mean radiation protection quantities for a simulated x-ray spectrum with uncertainties using Monte Carlo techniques. 
+        It is an open source, GP Lv3-licensed library for the Python Programming language. It ir compatible with Python 3.
+        USpeakPy is bases on the SpekPy package, wich is a Python software toolkit for modelling the x-ray spectra from x-ray tubes.</p>
+    </div>
+    <div class="section-2">
+      <h1>Main feactures of USpeakPy</h1>
+      <p>USpeakPy provides three feactures:</p>
+      <ul>
+        <li>
+          Compute mean radiation protection quantities of an x-ray spectrum simulated using SpekPy with uncertainties using Monte Carlo techniques.
+          Specifically, it allows to compute the first and second half-value layer for aluminium and copper, the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient.
+        </li>
+        <button type="button" class="btn btn-primary" href="/single">Single</button>
+        <li>
+          Perform batch simulationton compute the mean values and uncertainties of radiation protection quantities for several x-ray spectra simulated with SpekPy.
+        </li>
+        <button type="button" class="btn btn-primary" href="/batch">Batch</button>
+      </ul>
+    </div>
+  </div>
+  
+    
+{% endblock %}

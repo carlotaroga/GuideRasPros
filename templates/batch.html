@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}USpeakPy Web - Batch Simulation{% endblock %}
+
+<!-- Bloque para CSS específico de cada página -->
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/batch.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Process a File</h1> 
+    <!-- primer formulario: subida y procesamiento de archivo -->
+    <form id="processForm" enctype="multipart/form-data">
+        <h2>Upload and Process File</h2>
+
+        <!-- formato de archivo -->
+        <div class="form-group">
+            <label>Input file format:</label>
+            <label><input type="radio" name="file_format" value="CSV" required onchange="toggleExcelSheet()"> CSV</label>
+            <label><input type="radio" name="file_format" value="Excel" required onchange="toggleExcelSheet()"> Excel</label>
+        </div>
+
+        <!-- selección de archivo -->
+        <div class="form-group">
+            <label for="inputFile">Input file:</label>
+            <input type="file" id="inputFile" name="input_file" required>
+        </div>
+
+        <!-- Campo de nombre de hoja (solo visible si se selecciona Excel) -->
+        <div class="form-group" id="excelSheetField" style="display: none;">
+            <label for="excelSheet">Excel sheet:</label>
+            <input type="text" id="excelSheet" name="excel_sheet">
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" id="submitBtn" onclick="uploadFile(event)">Submit</button>
+        </div>
+
+        <!-- Botón de descarga de resultados (deshabilitado inicialmente) -->
+        <div class="form-group">
+            <button type="button" id="downloadBtn" disabled onclick="downloadResults()">Download results</button>
+        </div>
+
+
+        <!-- Segundo formulario: Descargar ejemplo de archivo -->
+        <h2>Download Example File</h2>
+        <form id="exampleForm">
+            <!-- Formato de ejemplo -->
+            <div class="form-group">
+                <label>Example input format:</label>
+                <label><input type="radio" name="example_format" value="CSV" required> CSV</label>
+                <label><input type="radio" name="example_format" value="Excel" required> Excel</label>
+            </div>
+
+            <!-- Botón de descarga de ejemplo -->
+            <div class="form-group">
+                <button type="button" class="btn btn-info" id="downloadExampleBtn" onclick="downloadExample()">Download example</button>
+            </div>
+        </form>
+    </form>
+</div>
+
+
+<script>
+    // Muestra el campo de hoja de Excel solo si se selecciona el formato Excel
+    function toggleExcelSheet() {
+        const excelSheetField = document.getElementById('excelSheetField');
+        const fileFormat = document.querySelector('input[name="file_format"]:checked').value;
+        excelSheetField.style.display = (fileFormat === 'Excel') ? 'block' : 'none';
+    }
+
+    // Habilitar el botón de descarga y cambiar su color a verde
+    function enableDownloadButton() {
+        const downloadBtn = document.getElementById('downloadBtn');
+        downloadBtn.disabled = false; // Habilitar el botón
+        downloadBtn.style.backgroundColor = 'green'; // Cambiar color de fondo a verde
+        downloadBtn.style.color = 'white'; // Cambiar el color del texto a blanco para mejor visibilidad
+    }
+
+    // Ejemplo de función para simular la disponibilidad del archivo
+    function downloadResults() {
+        alert("El archivo de resultados está listo para descargar.");
+    }
+
+    // Validar la extensión del archivo antes de enviar el formulario
+    async function uploadFile(event) {
+        // Obtener elementos del formulario
+        const form = document.getElementById('processForm');
+        const formData = new FormData(form);
+        const inputFile = document.getElementById('inputFile').files[0];
+        const fileFormat = document.querySelector('input[name="file_format"]:checked').value;
+
+        // Añadir datos al FormData
+        formData.append('file_format', fileFormat);
+        formData.append('input_file', inputFile);
+        
+        // Obtener la extensión del archivo
+        const fileExtension = inputFile.name.split('.').pop().toLowerCase();
+
+        // Comprobar si la extensión es válida según el formato seleccionado
+        if (fileFormat === 'CSV' && fileExtension !== 'csv') {
+            alert("Por favor, selecciona un archivo con extensión .csv");
+            event.preventDefault(); // Evita el envío del formulario
+            return false;
+        }
+
+        if (fileFormat === 'Excel' && fileExtension !== 'xlsx') {
+            alert("Por favor, selecciona un archivo con extensión .xlsx");
+            event.preventDefault(); // Evita el envío del formulario
+            return false;
+        }
+
+        
+         // Realizar el POST con fetch
+         try {
+            const response = await fetch('/upload_file', {
+                method: 'POST',
+                body: formData
+            });
+
+            // Manejo de respuesta
+            if (response.ok) {
+                const result = await response.text();
+                alert('Archivo subido correctamente: ' + result);
+            } else {
+                alert('Error al subir el archivo.');
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+            alert('Error en la solicitud: ' + error.message);
+        }
+    }
+
+    // Función para descargar el EJEMPLO de fichero según el formato seleccionado
+    function downloadExample() {
+            const format = document.querySelector('input[name="example_format"]:checked');
+
+            if (!format) {
+                alert('Por favor, selecciona un formato para el archivo de ejemplo.');
+                return;
+            }
+
+            const fileFormat = format.value;
+            // Realizar un POST para descargar el archivo de ejemplo
+            fetch(`/download_example`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ format: fileFormat })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Error al descargar el archivo de ejemplo');
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `example.${fileFormat === 'CSV' ? 'csv' : 'xlsx'}`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Error al descargar el archivo de ejemplo.');
+            });
+        }
+</script>
+
+{% endblock %}

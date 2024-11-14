@@ -1,0 +1,29 @@
+
+.main-container {
+    width: 60%;              
+    margin-left: 0;          
+    padding: 20px;   
+    margin: 20px 30px 30px;  
+        
+}
+
+.section-1, .section-2 {
+    margin-bottom: 20px;    
+}
+
+.section-2 button {
+    display: block;          /* Asegura que los botones ocupen una fila completa */
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+body {
+    background-image: 
+        linear-gradient(to bottom right, rgba(255, 255, 255, 2), rgba(255, 255, 255, 0.874)), /* Capa de degradado */
+        url('/static/resources/background.jpg');  /* Imagen de fondo */
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-size: large;
+}

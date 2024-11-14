@@ -1,0 +1,1284 @@
+Metadata-Version: 2.3
+Name: uspekpy
+Version: 1.0.2
+Summary: Radiation protection quantities for x-rays with uncertainties using SpekPy and Monte Carlo techniques
+Project-URL: Repository, https://github.com/lmri-met/uspekpy
+Project-URL: Documentation, https://github.com/lmri-met/uspekpy#readme
+Project-URL: Issues, https://github.com/lmri-met/uspekpy/issues
+Author-email: Paz Aviles <Paz.Aviles@ciemat.es>, Xandra Campo <xandra.campo@ciemat.es>
+Maintainer-email: Xandra Campo <xandra.campo@ciemat.es>, Paz Aviles <Paz.Aviles@ciemat.es>
+License:                     GNU GENERAL PUBLIC LICENSE
+                               Version 3, 29 June 2007
+        
+         Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+         Everyone is permitted to copy and distribute verbatim copies
+         of this license document, but changing it is not allowed.
+        
+                                    Preamble
+        
+          The GNU General Public License is a free, copyleft license for
+        software and other kinds of works.
+        
+          The licenses for most software and other practical works are designed
+        to take away your freedom to share and change the works.  By contrast,
+        the GNU General Public License is intended to guarantee your freedom to
+        share and change all versions of a program--to make sure it remains free
+        software for all its users.  We, the Free Software Foundation, use the
+        GNU General Public License for most of our software; it applies also to
+        any other work released this way by its authors.  You can apply it to
+        your programs, too.
+        
+          When we speak of free software, we are referring to freedom, not
+        price.  Our General Public Licenses are designed to make sure that you
+        have the freedom to distribute copies of free software (and charge for
+        them if you wish), that you receive source code or can get it if you
+        want it, that you can change the software or use pieces of it in new
+        free programs, and that you know you can do these things.
+        
+          To protect your rights, we need to prevent others from denying you
+        these rights or asking you to surrender the rights.  Therefore, you have
+        certain responsibilities if you distribute copies of the software, or if
+        you modify it: responsibilities to respect the freedom of others.
+        
+          For example, if you distribute copies of such a program, whether
+        gratis or for a fee, you must pass on to the recipients the same
+        freedoms that you received.  You must make sure that they, too, receive
+        or can get the source code.  And you must show them these terms so they
+        know their rights.
+        
+          Developers that use the GNU GPL protect your rights with two steps:
+        (1) assert copyright on the software, and (2) offer you this License
+        giving you legal permission to copy, distribute and/or modify it.
+        
+          For the developers' and authors' protection, the GPL clearly explains
+        that there is no warranty for this free software.  For both users' and
+        authors' sake, the GPL requires that modified versions be marked as
+        changed, so that their problems will not be attributed erroneously to
+        authors of previous versions.
+        
+          Some devices are designed to deny users access to install or run
+        modified versions of the software inside them, although the manufacturer
+        can do so.  This is fundamentally incompatible with the aim of
+        protecting users' freedom to change the software.  The systematic
+        pattern of such abuse occurs in the area of products for individuals to
+        use, which is precisely where it is most unacceptable.  Therefore, we
+        have designed this version of the GPL to prohibit the practice for those
+        products.  If such problems arise substantially in other domains, we
+        stand ready to extend this provision to those domains in future versions
+        of the GPL, as needed to protect the freedom of users.
+        
+          Finally, every program is threatened constantly by software patents.
+        States should not allow patents to restrict development and use of
+        software on general-purpose computers, but in those that do, we wish to
+        avoid the special danger that patents applied to a free program could
+        make it effectively proprietary.  To prevent this, the GPL assures that
+        patents cannot be used to render the program non-free.
+        
+          The precise terms and conditions for copying, distribution and
+        modification follow.
+        
+                               TERMS AND CONDITIONS
+        
+          0. Definitions.
+        
+          "This License" refers to version 3 of the GNU General Public License.
+        
+          "Copyright" also means copyright-like laws that apply to other kinds of
+        works, such as semiconductor masks.
+        
+          "The Program" refers to any copyrightable work licensed under this
+        License.  Each licensee is addressed as "you".  "Licensees" and
+        "recipients" may be individuals or organizations.
+        
+          To "modify" a work means to copy from or adapt all or part of the work
+        in a fashion requiring copyright permission, other than the making of an
+        exact copy.  The resulting work is called a "modified version" of the
+        earlier work or a work "based on" the earlier work.
+        
+          A "covered work" means either the unmodified Program or a work based
+        on the Program.
+        
+          To "propagate" a work means to do anything with it that, without
+        permission, would make you directly or secondarily liable for
+        infringement under applicable copyright law, except executing it on a
+        computer or modifying a private copy.  Propagation includes copying,
+        distribution (with or without modification), making available to the
+        public, and in some countries other activities as well.
+        
+          To "convey" a work means any kind of propagation that enables other
+        parties to make or receive copies.  Mere interaction with a user through
+        a computer network, with no transfer of a copy, is not conveying.
+        
+          An interactive user interface displays "Appropriate Legal Notices"
+        to the extent that it includes a convenient and prominently visible
+        feature that (1) displays an appropriate copyright notice, and (2)
+        tells the user that there is no warranty for the work (except to the
+        extent that warranties are provided), that licensees may convey the
+        work under this License, and how to view a copy of this License.  If
+        the interface presents a list of user commands or options, such as a
+        menu, a prominent item in the list meets this criterion.
+        
+          1. Source Code.
+        
+          The "source code" for a work means the preferred form of the work
+        for making modifications to it.  "Object code" means any non-source
+        form of a work.
+        
+          A "Standard Interface" means an interface that either is an official
+        standard defined by a recognized standards body, or, in the case of
+        interfaces specified for a particular programming language, one that
+        is widely used among developers working in that language.
+        
+          The "System Libraries" of an executable work include anything, other
+        than the work as a whole, that (a) is included in the normal form of
+        packaging a Major Component, but which is not part of that Major
+        Component, and (b) serves only to enable use of the work with that
+        Major Component, or to implement a Standard Interface for which an
+        implementation is available to the public in source code form.  A
+        "Major Component", in this context, means a major essential component
+        (kernel, window system, and so on) of the specific operating system
+        (if any) on which the executable work runs, or a compiler used to
+        produce the work, or an object code interpreter used to run it.
+        
+          The "Corresponding Source" for a work in object code form means all
+        the source code needed to generate, install, and (for an executable
+        work) run the object code and to modify the work, including scripts to
+        control those activities.  However, it does not include the work's
+        System Libraries, or general-purpose tools or generally available free
+        programs which are used unmodified in performing those activities but
+        which are not part of the work.  For example, Corresponding Source
+        includes interface definition files associated with source files for
+        the work, and the source code for shared libraries and dynamically
+        linked subprograms that the work is specifically designed to require,
+        such as by intimate data communication or control flow between those
+        subprograms and other parts of the work.
+        
+          The Corresponding Source need not include anything that users
+        can regenerate automatically from other parts of the Corresponding
+        Source.
+        
+          The Corresponding Source for a work in source code form is that
+        same work.
+        
+          2. Basic Permissions.
+        
+          All rights granted under this License are granted for the term of
+        copyright on the Program, and are irrevocable provided the stated
+        conditions are met.  This License explicitly affirms your unlimited
+        permission to run the unmodified Program.  The output from running a
+        covered work is covered by this License only if the output, given its
+        content, constitutes a covered work.  This License acknowledges your
+        rights of fair use or other equivalent, as provided by copyright law.
+        
+          You may make, run and propagate covered works that you do not
+        convey, without conditions so long as your license otherwise remains
+        in force.  You may convey covered works to others for the sole purpose
+        of having them make modifications exclusively for you, or provide you
+        with facilities for running those works, provided that you comply with
+        the terms of this License in conveying all material for which you do
+        not control copyright.  Those thus making or running the covered works
+        for you must do so exclusively on your behalf, under your direction
+        and control, on terms that prohibit them from making any copies of
+        your copyrighted material outside their relationship with you.
+        
+          Conveying under any other circumstances is permitted solely under
+        the conditions stated below.  Sublicensing is not allowed; section 10
+        makes it unnecessary.
+        
+          3. Protecting Users' Legal Rights From Anti-Circumvention Law.
+        
+          No covered work shall be deemed part of an effective technological
+        measure under any applicable law fulfilling obligations under article
+        11 of the WIPO copyright treaty adopted on 20 December 1996, or
+        similar laws prohibiting or restricting circumvention of such
+        measures.
+        
+          When you convey a covered work, you waive any legal power to forbid
+        circumvention of technological measures to the extent such circumvention
+        is effected by exercising rights under this License with respect to
+        the covered work, and you disclaim any intention to limit operation or
+        modification of the work as a means of enforcing, against the work's
+        users, your or third parties' legal rights to forbid circumvention of
+        technological measures.
+        
+          4. Conveying Verbatim Copies.
+        
+          You may convey verbatim copies of the Program's source code as you
+        receive it, in any medium, provided that you conspicuously and
+        appropriately publish on each copy an appropriate copyright notice;
+        keep intact all notices stating that this License and any
+        non-permissive terms added in accord with section 7 apply to the code;
+        keep intact all notices of the absence of any warranty; and give all
+        recipients a copy of this License along with the Program.
+        
+          You may charge any price or no price for each copy that you convey,
+        and you may offer support or warranty protection for a fee.
+        
+          5. Conveying Modified Source Versions.
+        
+          You may convey a work based on the Program, or the modifications to
+        produce it from the Program, in the form of source code under the
+        terms of section 4, provided that you also meet all of these conditions:
+        
+            a) The work must carry prominent notices stating that you modified
+            it, and giving a relevant date.
+        
+            b) The work must carry prominent notices stating that it is
+            released under this License and any conditions added under section
+            7.  This requirement modifies the requirement in section 4 to
+            "keep intact all notices".
+        
+            c) You must license the entire work, as a whole, under this
+            License to anyone who comes into possession of a copy.  This
+            License will therefore apply, along with any applicable section 7
+            additional terms, to the whole of the work, and all its parts,
+            regardless of how they are packaged.  This License gives no
+            permission to license the work in any other way, but it does not
+            invalidate such permission if you have separately received it.
+        
+            d) If the work has interactive user interfaces, each must display
+            Appropriate Legal Notices; however, if the Program has interactive
+            interfaces that do not display Appropriate Legal Notices, your
+            work need not make them do so.
+        
+          A compilation of a covered work with other separate and independent
+        works, which are not by their nature extensions of the covered work,
+        and which are not combined with it such as to form a larger program,
+        in or on a volume of a storage or distribution medium, is called an
+        "aggregate" if the compilation and its resulting copyright are not
+        used to limit the access or legal rights of the compilation's users
+        beyond what the individual works permit.  Inclusion of a covered work
+        in an aggregate does not cause this License to apply to the other
+        parts of the aggregate.
+        
+          6. Conveying Non-Source Forms.
+        
+          You may convey a covered work in object code form under the terms
+        of sections 4 and 5, provided that you also convey the
+        machine-readable Corresponding Source under the terms of this License,
+        in one of these ways:
+        
+            a) Convey the object code in, or embodied in, a physical product
+            (including a physical distribution medium), accompanied by the
+            Corresponding Source fixed on a durable physical medium
+            customarily used for software interchange.
+        
+            b) Convey the object code in, or embodied in, a physical product
+            (including a physical distribution medium), accompanied by a
+            written offer, valid for at least three years and valid for as
+            long as you offer spare parts or customer support for that product
+            model, to give anyone who possesses the object code either (1) a
+            copy of the Corresponding Source for all the software in the
+            product that is covered by this License, on a durable physical
+            medium customarily used for software interchange, for a price no
+            more than your reasonable cost of physically performing this
+            conveying of source, or (2) access to copy the
+            Corresponding Source from a network server at no charge.
+        
+            c) Convey individual copies of the object code with a copy of the
+            written offer to provide the Corresponding Source.  This
+            alternative is allowed only occasionally and noncommercially, and
+            only if you received the object code with such an offer, in accord
+            with subsection 6b.
+        
+            d) Convey the object code by offering access from a designated
+            place (gratis or for a charge), and offer equivalent access to the
+            Corresponding Source in the same way through the same place at no
+            further charge.  You need not require recipients to copy the
+            Corresponding Source along with the object code.  If the place to
+            copy the object code is a network server, the Corresponding Source
+            may be on a different server (operated by you or a third party)
+            that supports equivalent copying facilities, provided you maintain
+            clear directions next to the object code saying where to find the
+            Corresponding Source.  Regardless of what server hosts the
+            Corresponding Source, you remain obligated to ensure that it is
+            available for as long as needed to satisfy these requirements.
+        
+            e) Convey the object code using peer-to-peer transmission, provided
+            you inform other peers where the object code and Corresponding
+            Source of the work are being offered to the general public at no
+            charge under subsection 6d.
+        
+          A separable portion of the object code, whose source code is excluded
+        from the Corresponding Source as a System Library, need not be
+        included in conveying the object code work.
+        
+          A "User Product" is either (1) a "consumer product", which means any
+        tangible personal property which is normally used for personal, family,
+        or household purposes, or (2) anything designed or sold for incorporation
+        into a dwelling.  In determining whether a product is a consumer product,
+        doubtful cases shall be resolved in favor of coverage.  For a particular
+        product received by a particular user, "normally used" refers to a
+        typical or common use of that class of product, regardless of the status
+        of the particular user or of the way in which the particular user
+        actually uses, or expects or is expected to use, the product.  A product
+        is a consumer product regardless of whether the product has substantial
+        commercial, industrial or non-consumer uses, unless such uses represent
+        the only significant mode of use of the product.
+        
+          "Installation Information" for a User Product means any methods,
+        procedures, authorization keys, or other information required to install
+        and execute modified versions of a covered work in that User Product from
+        a modified version of its Corresponding Source.  The information must
+        suffice to ensure that the continued functioning of the modified object
+        code is in no case prevented or interfered with solely because
+        modification has been made.
+        
+          If you convey an object code work under this section in, or with, or
+        specifically for use in, a User Product, and the conveying occurs as
+        part of a transaction in which the right of possession and use of the
+        User Product is transferred to the recipient in perpetuity or for a
+        fixed term (regardless of how the transaction is characterized), the
+        Corresponding Source conveyed under this section must be accompanied
+        by the Installation Information.  But this requirement does not apply
+        if neither you nor any third party retains the ability to install
+        modified object code on the User Product (for example, the work has
+        been installed in ROM).
+        
+          The requirement to provide Installation Information does not include a
+        requirement to continue to provide support service, warranty, or updates
+        for a work that has been modified or installed by the recipient, or for
+        the User Product in which it has been modified or installed.  Access to a
+        network may be denied when the modification itself materially and
+        adversely affects the operation of the network or violates the rules and
+        protocols for communication across the network.
+        
+          Corresponding Source conveyed, and Installation Information provided,
+        in accord with this section must be in a format that is publicly
+        documented (and with an implementation available to the public in
+        source code form), and must require no special password or key for
+        unpacking, reading or copying.
+        
+          7. Additional Terms.
+        
+          "Additional permissions" are terms that supplement the terms of this
+        License by making exceptions from one or more of its conditions.
+        Additional permissions that are applicable to the entire Program shall
+        be treated as though they were included in this License, to the extent
+        that they are valid under applicable law.  If additional permissions
+        apply only to part of the Program, that part may be used separately
+        under those permissions, but the entire Program remains governed by
+        this License without regard to the additional permissions.
+        
+          When you convey a copy of a covered work, you may at your option
+        remove any additional permissions from that copy, or from any part of
+        it.  (Additional permissions may be written to require their own
+        removal in certain cases when you modify the work.)  You may place
+        additional permissions on material, added by you to a covered work,
+        for which you have or can give appropriate copyright permission.
+        
+          Notwithstanding any other provision of this License, for material you
+        add to a covered work, you may (if authorized by the copyright holders of
+        that material) supplement the terms of this License with terms:
+        
+            a) Disclaiming warranty or limiting liability differently from the
+            terms of sections 15 and 16 of this License; or
+        
+            b) Requiring preservation of specified reasonable legal notices or
+            author attributions in that material or in the Appropriate Legal
+            Notices displayed by works containing it; or
+        
+            c) Prohibiting misrepresentation of the origin of that material, or
+            requiring that modified versions of such material be marked in
+            reasonable ways as different from the original version; or
+        
+            d) Limiting the use for publicity purposes of names of licensors or
+            authors of the material; or
+        
+            e) Declining to grant rights under trademark law for use of some
+            trade names, trademarks, or service marks; or
+        
+            f) Requiring indemnification of licensors and authors of that
+            material by anyone who conveys the material (or modified versions of
+            it) with contractual assumptions of liability to the recipient, for
+            any liability that these contractual assumptions directly impose on
+            those licensors and authors.
+        
+          All other non-permissive additional terms are considered "further
+        restrictions" within the meaning of section 10.  If the Program as you
+        received it, or any part of it, contains a notice stating that it is
+        governed by this License along with a term that is a further
+        restriction, you may remove that term.  If a license document contains
+        a further restriction but permits relicensing or conveying under this
+        License, you may add to a covered work material governed by the terms
+        of that license document, provided that the further restriction does
+        not survive such relicensing or conveying.
+        
+          If you add terms to a covered work in accord with this section, you
+        must place, in the relevant source files, a statement of the
+        additional terms that apply to those files, or a notice indicating
+        where to find the applicable terms.
+        
+          Additional terms, permissive or non-permissive, may be stated in the
+        form of a separately written license, or stated as exceptions;
+        the above requirements apply either way.
+        
+          8. Termination.
+        
+          You may not propagate or modify a covered work except as expressly
+        provided under this License.  Any attempt otherwise to propagate or
+        modify it is void, and will automatically terminate your rights under
+        this License (including any patent licenses granted under the third
+        paragraph of section 11).
+        
+          However, if you cease all violation of this License, then your
+        license from a particular copyright holder is reinstated (a)
+        provisionally, unless and until the copyright holder explicitly and
+        finally terminates your license, and (b) permanently, if the copyright
+        holder fails to notify you of the violation by some reasonable means
+        prior to 60 days after the cessation.
+        
+          Moreover, your license from a particular copyright holder is
+        reinstated permanently if the copyright holder notifies you of the
+        violation by some reasonable means, this is the first time you have
+        received notice of violation of this License (for any work) from that
+        copyright holder, and you cure the violation prior to 30 days after
+        your receipt of the notice.
+        
+          Termination of your rights under this section does not terminate the
+        licenses of parties who have received copies or rights from you under
+        this License.  If your rights have been terminated and not permanently
+        reinstated, you do not qualify to receive new licenses for the same
+        material under section 10.
+        
+          9. Acceptance Not Required for Having Copies.
+        
+          You are not required to accept this License in order to receive or
+        run a copy of the Program.  Ancillary propagation of a covered work
+        occurring solely as a consequence of using peer-to-peer transmission
+        to receive a copy likewise does not require acceptance.  However,
+        nothing other than this License grants you permission to propagate or
+        modify any covered work.  These actions infringe copyright if you do
+        not accept this License.  Therefore, by modifying or propagating a
+        covered work, you indicate your acceptance of this License to do so.
+        
+          10. Automatic Licensing of Downstream Recipients.
+        
+          Each time you convey a covered work, the recipient automatically
+        receives a license from the original licensors, to run, modify and
+        propagate that work, subject to this License.  You are not responsible
+        for enforcing compliance by third parties with this License.
+        
+          An "entity transaction" is a transaction transferring control of an
+        organization, or substantially all assets of one, or subdividing an
+        organization, or merging organizations.  If propagation of a covered
+        work results from an entity transaction, each party to that
+        transaction who receives a copy of the work also receives whatever
+        licenses to the work the party's predecessor in interest had or could
+        give under the previous paragraph, plus a right to possession of the
+        Corresponding Source of the work from the predecessor in interest, if
+        the predecessor has it or can get it with reasonable efforts.
+        
+          You may not impose any further restrictions on the exercise of the
+        rights granted or affirmed under this License.  For example, you may
+        not impose a license fee, royalty, or other charge for exercise of
+        rights granted under this License, and you may not initiate litigation
+        (including a cross-claim or counterclaim in a lawsuit) alleging that
+        any patent claim is infringed by making, using, selling, offering for
+        sale, or importing the Program or any portion of it.
+        
+          11. Patents.
+        
+          A "contributor" is a copyright holder who authorizes use under this
+        License of the Program or a work on which the Program is based.  The
+        work thus licensed is called the contributor's "contributor version".
+        
+          A contributor's "essential patent claims" are all patent claims
+        owned or controlled by the contributor, whether already acquired or
+        hereafter acquired, that would be infringed by some manner, permitted
+        by this License, of making, using, or selling its contributor version,
+        but do not include claims that would be infringed only as a
+        consequence of further modification of the contributor version.  For
+        purposes of this definition, "control" includes the right to grant
+        patent sublicenses in a manner consistent with the requirements of
+        this License.
+        
+          Each contributor grants you a non-exclusive, worldwide, royalty-free
+        patent license under the contributor's essential patent claims, to
+        make, use, sell, offer for sale, import and otherwise run, modify and
+        propagate the contents of its contributor version.
+        
+          In the following three paragraphs, a "patent license" is any express
+        agreement or commitment, however denominated, not to enforce a patent
+        (such as an express permission to practice a patent or covenant not to
+        sue for patent infringement).  To "grant" such a patent license to a
+        party means to make such an agreement or commitment not to enforce a
+        patent against the party.
+        
+          If you convey a covered work, knowingly relying on a patent license,
+        and the Corresponding Source of the work is not available for anyone
+        to copy, free of charge and under the terms of this License, through a
+        publicly available network server or other readily accessible means,
+        then you must either (1) cause the Corresponding Source to be so
+        available, or (2) arrange to deprive yourself of the benefit of the
+        patent license for this particular work, or (3) arrange, in a manner
+        consistent with the requirements of this License, to extend the patent
+        license to downstream recipients.  "Knowingly relying" means you have
+        actual knowledge that, but for the patent license, your conveying the
+        covered work in a country, or your recipient's use of the covered work
+        in a country, would infringe one or more identifiable patents in that
+        country that you have reason to believe are valid.
+        
+          If, pursuant to or in connection with a single transaction or
+        arrangement, you convey, or propagate by procuring conveyance of, a
+        covered work, and grant a patent license to some of the parties
+        receiving the covered work authorizing them to use, propagate, modify
+        or convey a specific copy of the covered work, then the patent license
+        you grant is automatically extended to all recipients of the covered
+        work and works based on it.
+        
+          A patent license is "discriminatory" if it does not include within
+        the scope of its coverage, prohibits the exercise of, or is
+        conditioned on the non-exercise of one or more of the rights that are
+        specifically granted under this License.  You may not convey a covered
+        work if you are a party to an arrangement with a third party that is
+        in the business of distributing software, under which you make payment
+        to the third party based on the extent of your activity of conveying
+        the work, and under which the third party grants, to any of the
+        parties who would receive the covered work from you, a discriminatory
+        patent license (a) in connection with copies of the covered work
+        conveyed by you (or copies made from those copies), or (b) primarily
+        for and in connection with specific products or compilations that
+        contain the covered work, unless you entered into that arrangement,
+        or that patent license was granted, prior to 28 March 2007.
+        
+          Nothing in this License shall be construed as excluding or limiting
+        any implied license or other defenses to infringement that may
+        otherwise be available to you under applicable patent law.
+        
+          12. No Surrender of Others' Freedom.
+        
+          If conditions are imposed on you (whether by court order, agreement or
+        otherwise) that contradict the conditions of this License, they do not
+        excuse you from the conditions of this License.  If you cannot convey a
+        covered work so as to satisfy simultaneously your obligations under this
+        License and any other pertinent obligations, then as a consequence you may
+        not convey it at all.  For example, if you agree to terms that obligate you
+        to collect a royalty for further conveying from those to whom you convey
+        the Program, the only way you could satisfy both those terms and this
+        License would be to refrain entirely from conveying the Program.
+        
+          13. Use with the GNU Affero General Public License.
+        
+          Notwithstanding any other provision of this License, you have
+        permission to link or combine any covered work with a work licensed
+        under version 3 of the GNU Affero General Public License into a single
+        combined work, and to convey the resulting work.  The terms of this
+        License will continue to apply to the part which is the covered work,
+        but the special requirements of the GNU Affero General Public License,
+        section 13, concerning interaction through a network will apply to the
+        combination as such.
+        
+          14. Revised Versions of this License.
+        
+          The Free Software Foundation may publish revised and/or new versions of
+        the GNU General Public License from time to time.  Such new versions will
+        be similar in spirit to the present version, but may differ in detail to
+        address new problems or concerns.
+        
+          Each version is given a distinguishing version number.  If the
+        Program specifies that a certain numbered version of the GNU General
+        Public License "or any later version" applies to it, you have the
+        option of following the terms and conditions either of that numbered
+        version or of any later version published by the Free Software
+        Foundation.  If the Program does not specify a version number of the
+        GNU General Public License, you may choose any version ever published
+        by the Free Software Foundation.
+        
+          If the Program specifies that a proxy can decide which future
+        versions of the GNU General Public License can be used, that proxy's
+        public statement of acceptance of a version permanently authorizes you
+        to choose that version for the Program.
+        
+          Later license versions may give you additional or different
+        permissions.  However, no additional obligations are imposed on any
+        author or copyright holder as a result of your choosing to follow a
+        later version.
+        
+          15. Disclaimer of Warranty.
+        
+          THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+        APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+        HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+        OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+        IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+        ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+        
+          16. Limitation of Liability.
+        
+          IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+        WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+        THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+        GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+        USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+        DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+        PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+        EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+        SUCH DAMAGES.
+        
+          17. Interpretation of Sections 15 and 16.
+        
+          If the disclaimer of warranty and limitation of liability provided
+        above cannot be given local legal effect according to their terms,
+        reviewing courts shall apply local law that most closely approximates
+        an absolute waiver of all civil liability in connection with the
+        Program, unless a warranty or assumption of liability accompanies a
+        copy of the Program in return for a fee.
+        
+                             END OF TERMS AND CONDITIONS
+        
+                    How to Apply These Terms to Your New Programs
+        
+          If you develop a new program, and you want it to be of the greatest
+        possible use to the public, the best way to achieve this is to make it
+        free software which everyone can redistribute and change under these terms.
+        
+          To do so, attach the following notices to the program.  It is safest
+        to attach them to the start of each source file to most effectively
+        state the exclusion of warranty; and each file should have at least
+        the "copyright" line and a pointer to where the full notice is found.
+        
+            <one line to give the program's name and a brief idea of what it does.>
+            Copyright (C) <year>  <name of author>
+        
+            This program is free software: you can redistribute it and/or modify
+            it under the terms of the GNU General Public License as published by
+            the Free Software Foundation, either version 3 of the License, or
+            (at your option) any later version.
+        
+            This program is distributed in the hope that it will be useful,
+            but WITHOUT ANY WARRANTY; without even the implied warranty of
+            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+            GNU General Public License for more details.
+        
+            You should have received a copy of the GNU General Public License
+            along with this program.  If not, see <https://www.gnu.org/licenses/>.
+        
+        Also add information on how to contact you by electronic and paper mail.
+        
+          If the program does terminal interaction, make it output a short
+        notice like this when it starts in an interactive mode:
+        
+            <program>  Copyright (C) <year>  <name of author>
+            This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+            This is free software, and you are welcome to redistribute it
+            under certain conditions; type `show c' for details.
+        
+        The hypothetical commands `show w' and `show c' should show the appropriate
+        parts of the General Public License.  Of course, your program's commands
+        might be different; for a GUI interface, you would use an "about box".
+        
+          You should also get your employer (if you work as a programmer) or school,
+        if any, to sign a "copyright disclaimer" for the program, if necessary.
+        For more information on this, and how to apply and follow the GNU GPL, see
+        <https://www.gnu.org/licenses/>.
+        
+          The GNU General Public License does not permit incorporating your program
+        into proprietary programs.  If your program is a subroutine library, you
+        may consider it more useful to permit linking proprietary applications with
+        the library.  If this is what you want to do, use the GNU Lesser General
+        Public License instead of this License.  But first, please read
+        <https://www.gnu.org/licenses/why-not-lgpl.html>.
+License-File: LICENSE
+Keywords: monte carlo,spectrum,uncertainty,x-rays
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.8
+Requires-Dist: openpyxl>=3.1.2
+Requires-Dist: pandas>=2.2.2
+Requires-Dist: spekpy>=2.0.11.1
+Description-Content-Type: text/markdown
+
+<h1><img style="float:left;" width="50" height="40" src="assets/letter-u.png" alt="USpekPy icon">USpekPy</h1>
+
+## Radiation protection quantities for x-rays with uncertainties
+
+![Static Badge](https://img.shields.io/badge/Date-Jun_24-teal)
+![Static Badge](https://img.shields.io/badge/Version-1.0.2-teal)
+![Static Badge](https://img.shields.io/badge/Maintenance-Active-teal)
+
+[![Static Badge](https://img.shields.io/badge/Surce_code-GitHub-blue)](https://github.com/lmri-met/uspekpy)
+[![Static Badge](https://img.shields.io/badge/Documentation-README-blue)](https://github.com/lmri-met/uspekpy#README)
+[![Static Badge](https://img.shields.io/badge/Contribute-Issues-blue)](https://github.com/lmri-met/uspekpy/issues)
+[![Static Badge](https://img.shields.io/badge/Organization-LMRI--Met-blue)](https://github.com/lmri-met/)
+
+[![Static Badge](https://img.shields.io/badge/Distribution-PyPi-orange)](https://pypi.org/project/uspekpy/)
+[![Static Badge](https://img.shields.io/badge/License-GPLv3.0-orange)](https://choosealicense.com/licenses/gpl-3.0/)
+![Static Badge](https://img.shields.io/badge/Tests-Passing-green)
+![Static Badge](https://img.shields.io/badge/CodeCov-65%25-green)
+
+## Table of Contents
+
+- [What is USpekPy?](#what-is-uspekpy)
+- [Main features of USpekPy](#main-features)
+- [How to install USpekPy?](#installation)
+- [Quick user guide](#quick-user-guide)
+  - [Units and uncertainties](#units-and-uncertainties)
+  - [Compute mean radiation protection quantities](#compute-mean-radiation-protection-quantities)
+  - [Compute mean radiation protection quantities with uncertainties](#compute-mean-radiation-protection-quantities-with-uncertainties)
+  - [Compute batch simulation for several x-ray spectra](#compute-batch-simulation-for-several-x-ray-spectra)
+  - [Data files](#data-files)
+- [How to get support?](#how-to-get-support)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
+- [License](#license)
+- [Contributing to USpekPy](#contributing-to-uspekpy)
+
+## What is USpekPy?
+
+**USpekPy** is a Python package that allows to compute mean radiation protection quantities 
+for a simulated x-ray spectrum with uncertainties using Monte Carlo techniques.
+It is an open source, GPLv3-licensed library for the Python programming language.
+It is compatible with Python 3.
+**USpekPy** is based on the [SpekPy](https://bitbucket.org/spekpy/spekpy_release/src/master/) package, 
+which is a Python software toolkit for modelling the x-ray spectra from x-ray tubes.
+
+## Main features of USpekPy 
+
+**USpekPy** provides three features:
+- Compute **mean values of radiation protection quantities** of an x-ray spectrum simulated using SpekPy. 
+  Specifically, it allows to compute the mean energy, the air kerma and the mean air kerma-to-dose-equivalent 
+  conversion coefficient.
+- Compute **mean radiation protection quantities** of an x-ray spectrum simulated using SpekPy 
+  **with uncertainties** using Monte Carlo techniques.
+  Specifically, it allows to compute the first and second half-value layer for aluminium and copper, 
+  the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient.
+- Perform **batch simulation** to compute the mean values and uncertainties of radiation protection quantities
+  for **several x-ray spectra** simulated with SpekPy.
+
+## How to install USpekPy?
+
+**USpekPy** can be installed from the [Python Package Index (PyPI)](https://pypi.org/project/uspekpy/) 
+by running the following command from a terminal:
+
+```bash
+pip install uspekpy
+```
+
+## Quick user guide
+
+### Units and uncertainties
+
+All the uncertainties are standard uncertainties, i.e., with a coverage factor of k = 1.
+The units of relative uncertainties are expressed as fraction of one.
+The next table shows the units of the quantities used in the package.
+
+| Quantity                                      | Unit  |
+|-----------------------------------------------|-------|
+| Distance                                      | mm    |
+| Voltage                                       | kV    |
+| Angle                                         | deg   |
+| Energy                                        | keV   |
+| Fluence                                       | 1/cm² |
+| Mass energy transfer coefficients of air      | cm²/g |
+| Air kerma                                     | uGy   |
+| Mono-energetic K to H conversion coefficients | Sv/Gy |
+
+### Compute mean radiation protection quantities
+
+This first example shows how to compute the mean values of some radiation protection quantities 
+of an x-ray spectrum simulated using SpekPy.
+The considered x-ray spectrum is the one corresponding to the radiation quality N-60, 
+which is obtained using 60 KeV of peak kilovoltage in the x-ray tube and filters of aluminum (4 mm) and copper (0.6 mm).
+The considered operational quantity is ambient dose equivalent, H*(10), 
+with a radiation incidence angle of 0º at a distance of 1 m from the x-ray tube.
+The tool that **USpekPy** provides to do this is the **SpekWrapper** class.
+
+The next python script shows how to compute the first and second half-value layers for aluminium and copper, 
+the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient.
+
+```python
+from uspekpy import SpekWrapper
+
+# Define x-ray beam parameters for radiation quality N-60 (filter thickness, peak kilovoltage and anode angle)
+my_filters = [
+  ('Al', 4),  # mm
+  ('Cu', 0.6),  # mm
+  ('Sn', 0),  # mm
+  ('Pb', 0),  # mm
+  ('Be', 0),  # mm
+  ('Air', 1000)  # mm
+]
+my_kvp = 60  # kV
+my_th = 10  # deg
+
+# Define path to CSV file containing mass energy transfer coefficients of air in terms of the energy
+my_mu_csv = 'data/mu_tr_rho.csv'
+
+# Define path to CSV file containing the monoenergetic air kerma-to-dose-equivalent conversion coefficients for H*(10)
+my_hk_csv = 'data/h_k_h_amb_10.csv'
+
+# Initialize an SpeckWrapper object and add filters
+spectrum = SpekWrapper(kvp=my_kvp, th=my_th)
+spectrum.multi_filter(my_filters)
+
+# Calculate half-value layers for aluminum and copper
+hvl1_al = spectrum.get_hvl1()
+hvl2_al = spectrum.get_hvl2()
+hvl1_cu = spectrum.get_hvl1(matl='Cu')
+hvl2_cu = spectrum.get_hvl2(matl='Cu')
+
+# Calculate mean energy
+mean_energy = spectrum.get_mean_energy()
+
+# Calculate mean air kerma
+mean_kerma = spectrum.get_air_kerma(mass_transfer_coefficients=my_mu_csv)
+
+# Calculate mean air kerma-to-dose-equivalent conversion coefficient for H*(10)
+mean_hk = spectrum.get_mean_conversion_coefficient(
+  mass_transfer_coefficients=my_mu_csv, conversion_coefficients=my_hk_csv)
+
+# Print results
+print(f'First HVL for Al: {hvl1_al} mm')
+print(f'Second HVL for Al: {hvl2_al} mm')
+print(f'First HVL for Cu: {hvl1_cu} mm')
+print(f'Second HVL for Cu: {hvl2_cu} mm')
+print(f'Mean energy: {mean_energy} keV')
+print(f'Air kerma: {mean_kerma} uGy')
+print(f'Mean conversion coefficient for H*(10): {mean_hk} Sv/Gy')
+```
+
+The script output is:
+
+```
+First HVL for Al: 5.904510251136515 mm
+Second HVL for Al: 6.239790098050192 mm
+First HVL for Cu: 0.23502729534875702 mm
+Second HVL for Cu: 0.2624330033450075 mm
+Mean energy: 47.797974735384756 keV
+Air kerma: 1.5902735973543143 uGy
+Mean conversion coefficient for H*(10): 1.5909359863722154 Sv/Gy
+```
+
+### Compute mean radiation protection quantities with uncertainties
+
+This second example shows how to compute the mean values and uncertainties of some radiation protection quantities 
+of an x-ray spectrum simulated using SpekPy.
+The considered x-ray spectrum is the one corresponding to the radiation quality N-60, 
+which is obtained using 60 KeV of peak kilovoltage in the x-ray tube and filters of aluminum (4 mm) and copper (0.6 mm).
+The considered operational quantity is ambient dose equivalent, H*(10), 
+with a radiation incidence angle of 0º at a distance of 1 m from the x-ray tube.
+The tool that **USpekPy** provides to do this is the **USpek** class.
+
+The next python script shows how to compute the first and second half-value layers for aluminium and copper, 
+the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient.
+
+```python
+from uspekpy import USpek
+
+# Define values and relative uncertainty (k=1) of x-ray beam parameters for radiation quality N-60
+# (filter thickness, peak kilovoltage and anode angle)
+my_beam = {
+    'kVp': (60, 0.01),  # mm, fraction of one
+    'th': (20, 0.01),  # mm, fraction of one
+    'Al': (4, 0.01),  # mm, fraction of one
+    'Cu': (0.6, 0.01),  # mm, fraction of one
+    'Sn': (0, 0),  # mm, fraction of one
+    'Pb': (0, 0),  # mm, fraction of one
+    'Be': (0, 0),  # mm, fraction of one
+    'Air': (1000, 0.01)  # mm, fraction of one
+}
+
+# Define path to CSV file containing mass energy transfer coefficients of air in terms of the energy
+my_mu_csv = 'data/mu_tr_rho.csv'
+
+# Define path to CSV file containing the monoenergetic air kerma-to-dose-equivalent conversion coefficients for H*(10)
+my_hk_csv = 'data/h_k_h_amb_10.csv'
+
+# Define relative uncertainty (k=1) of mass energy transfer coefficients of air
+my_mu_std = 0.01  # fraction of one
+
+# Initialize a USpekPy object with the defined beam parameters, mass energy transfer coefficients of air
+# and monoenergetic air kerma-to-dose-equivalent conversion coefficients for H*(10)
+s = USpek(beam_parameters=my_beam, mass_transfer_coefficients=my_mu_csv,
+          mass_transfer_coefficients_uncertainty=my_mu_std, conversion_coefficients=my_hk_csv)
+
+# Run simulation with a given number of iterations
+df = s.simulate(simulations_number=3)
+
+# Define the path of the output file where the simulation results will be saved
+my_output_csv = 'output/output.csv'
+
+# Save results to a CSV file
+df.to_csv(my_output_csv, index=True)
+
+# Print results
+print(df.to_string())
+```
+
+The script **output** is a table containing the randomly sampled values of the beam parameters and 
+the computed mean radiation protection quantities of the simulated x-ray spectrum 
+for each iteration of the Monte Carlo simulation.
+It also contains their mean values and standard uncertainties (k=1).
+The **units** are
+kV for the peak kilovoltage,
+deg for the anode angle,
+mm for the filter thickness, air gap and half-value layers, 
+keV for the mean energy,
+Gy for the air kerma and 
+Sv/Gy for the mean air kerma-to-dose-equivalent conversion coefficient.
+
+```
+                      #   kVp (kV)   th (deg)    Air (mm)   Al (mm)   Cu (mm)  Sn (mm)  Pb (mm)  Be (mm)  HVL1 Al (mm)  HVL2 Al (mm)  HVL1 Cu (mm)  HVL2 Cu (mm)  Mean energy (keV)  Air kerma (uGy)  Mean conv. coeff. (Sv/Gy)
+0           Iteration 1  59.929717  20.070882  996.150291  4.031398  0.591599      0.0      0.0      0.0      5.831812      6.172730      0.230861      0.258297          47.538305         1.599452                   1.585449
+1           Iteration 2  59.534814  20.485473  996.406825  4.003680  0.589934      0.0      0.0      0.0      5.781268      6.117909      0.227873      0.254629          47.303424         1.533225                   1.581466
+2           Iteration 3  59.596255  19.678848  996.920532  3.935728  0.606411      0.0      0.0      0.0      5.826152      6.157480      0.230388      0.256981          47.453653         1.488258                   1.585720
+3                  Mean  59.686929  20.078401  996.492549  3.990269  0.595981      0.0      0.0      0.0      5.813078      6.149373      0.229707      0.256636          47.431794         1.540312                   1.584211
+4    Standard deviation   0.173500   0.329346    0.320239  0.040192  0.007406      0.0      0.0      0.0      0.022611      0.023103      0.001311      0.001517           0.097127         0.045670                   0.001945
+5  Relative uncertainty   0.002907   0.016403    0.000321  0.010073  0.012427      NaN      NaN      NaN      0.003890      0.003757      0.005708      0.005913           0.002048         0.029650                   0.001228
+
+```
+
+### Compute batch simulation for several x-ray spectra
+
+This third example shows how to perform batch simulation to compute the mean values and uncertainties of 
+radiation protection quantities for several x-ray spectra simulated with SpekPy.
+The considered x-ray spectrum is the one corresponding to the radiation quality N-60, 
+which is obtained using 60 KeV of peak kilovoltage in the x-ray tube and filters of aluminum (4 mm) and copper (0.6 mm).
+The considered operational quantity is ambient dose equivalent, H*(10), 
+with a radiation incidence angle of 0º at a distance of 1 m from the x-ray tube.
+The tool that **USpekPy** provides to do this is the **batch_simulation()** function.
+
+To perform the batch simulation you need and **input file** where the parameters of each simulation are specified.
+This can be a CSV file or an Excel file.
+- **First column: simulation parameters' names**:
+The first column contain the names of the quantities used as simulation parameters.
+They are grouped in general parameters (radiation quality, operational quantity, irradiation angle and number of simulations),
+value parameters (filters thickness, air gap, peak kilovoltage, anode angle, mass energy transfer coefficients of air and monoenergetic air kerma-to-dose-equivalent conversion coefficients)
+and relative uncertainty parameters (filters thickness, air gap, peak kilovoltage, anode angle, mass energy transfer coefficients).
+Units of value parameters are specified in the column.
+Relative uncertainties are fractional uncertainties, i.e., they are expressed as fractions of one.
+The name of the parameters must not be changed, since they are used for data parsing.
+- **Next columns: simulation parameters' values**:
+The next columns contain the values of the simulation parameters, one column for each simulation case.
+
+The next table shows the content of the input file for this example.
+
+```
+                                                                                    Case1                  Case2
+General                                                                               NaN                    NaN
+Quality                                                                              N-60                   N-60
+Operational quantity                                                               H*(10)                 H*(10)
+Irradiation angle (deg)                                                                 0                      0
+Number of simulations                                                                   3                      3
+Values                                                                                NaN                    NaN
+Al filter width (mm)                                                                    4                      4
+Cu filter width (mm)                                                                  0.6                    0.6
+Sn filter width (mm)                                                                    0                      0
+Pb filter width (mm)                                                                    0                      0
+Be filter width (mm)                                                                    0                      0
+Air gap width (mm)                                                                   1000                   1000
+Peak kilovoltage (kV)                                                                  60                     60
+Anode angle (deg)                                                                      20                     20
+Mass energy transfer coefficients of air file (keV and cm²/g)          data/mu_tr_rho.csv     data/mu_tr_rho.csv
+Mono-energetic K to H conversion coefficients file (keV and Sv/Gy)  data/h_k_h_amb_10.csv  data/h_k_h_amb_10.csv
+Relative uncertainties (k=1)                                                          NaN                    NaN
+Al filter width (fraction of one)                                                    0.01                   0.01
+Cu filter width (fraction of one)                                                    0.01                   0.01
+Sn filter width (fraction of one)                                                       0                      0
+Pb filter width (fraction of one)                                                       0                      0
+Be filter width (fraction of one)                                                       0                      0
+Air gap width (fraction of one)                                                      0.01                   0.01
+Peak kilovoltage (fraction of one)                                                   0.01                   0.01
+Anode angle (fraction of one)                                                        0.01                   0.01
+Mass energy transfer coefficients of air (fraction of one)                           0.01                   0.01               
+```
+
+The next python script shows how to compute the first and second half-value layers for aluminium and copper, 
+the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient 
+for the previous **input file in CSV format**.
+
+```python
+from uspekpy import batch_simulation
+
+# Define the path to the input CSV file
+my_csv = 'data/input.csv'
+
+# Call the batch_simulation function with the defined input CSV file
+df = batch_simulation(input_file_path=my_csv)
+
+# Define the path of the output file where the simulation results will be saved
+my_output_csv = 'output/output.csv'
+
+# Save results to a CSV file
+df.to_csv(my_output_csv, index=True)
+
+# Print results
+print(df.to_string())
+```
+
+The next python script shows how to compute the first and second half-value layers for aluminium and copper, 
+the mean energy, the air kerma and the mean air kerma-to-dose-equivalent conversion coefficient 
+for the previous **input file in Excel format**.
+
+```python
+from uspekpy import batch_simulation
+
+# Define the path to the input Excel file
+my_excel = 'data/input.xlsx'
+
+# Define the name of the sheet in the input Excel file
+my_sheet = 'input'
+
+# Call the batch_simulation function with the defined input Excel file and sheet
+df = batch_simulation(input_file_path=my_excel, sheet_name=my_sheet)
+
+# Define the path of the output file where the simulation results will be saved
+my_output_csv = 'output/output.csv'
+
+# Save results to a CSV file
+df.to_csv(my_output_csv, index=True)
+
+# Print results
+print(df.to_string())
+```
+
+In both cases, the script **output** is a table in which the simulation results for each case 
+are concatenated to the input table.
+Simulation results includes the computed mean values and standard uncertainties (k=1) 
+for the radiation protection quantities of each simulated x-ray spectrum.
+The **units** are
+mm for the half-value layers, 
+keV for the mean energy,
+Gy for the air kerma and 
+Sv/Gy for the mean air kerma-to-dose-equivalent conversion coefficient.
+
+```
+                                                                                    Case1                  Case2
+General                                                                               NaN                    NaN
+Quality                                                                              N-60                   N-60
+Operational quantity                                                               H*(10)                 H*(10)
+Irradiation angle (deg)                                                                 0                      0
+Number of simulations                                                                   3                      3
+Values                                                                                NaN                    NaN
+Al filter width (mm)                                                                    4                      4
+Cu filter width (mm)                                                                  0.6                    0.6
+Sn filter width (mm)                                                                    0                      0
+Pb filter width (mm)                                                                    0                      0
+Be filter width (mm)                                                                    0                      0
+Air gap width (mm)                                                                   1000                   1000
+Peak kilovoltage (kV)                                                                  60                     60
+Anode angle (deg)                                                                      20                     20
+Mass energy transfer coefficients of air file (keV and cm²/g)          data/mu_tr_rho.csv     data/mu_tr_rho.csv
+Mono-energetic K to H conversion coefficients file (keV and Sv/Gy)  data/h_k_h_amb_10.csv  data/h_k_h_amb_10.csv
+Relative uncertainties (k=1)                                                          NaN                    NaN
+Al filter width (fraction of one)                                                    0.01                   0.01
+Cu filter width (fraction of one)                                                    0.01                   0.01
+Sn filter width (fraction of one)                                                       0                      0
+Pb filter width (fraction of one)                                                       0                      0
+Be filter width (fraction of one)                                                       0                      0
+Air gap width (fraction of one)                                                      0.01                   0.01
+Peak kilovoltage (fraction of one)                                                   0.01                   0.01
+Anode angle (fraction of one)                                                        0.01                   0.01
+Mass energy transfer coefficients of air (fraction of one)                           0.01                   0.01
+Results                                                                              None                   None
+HVL1 Al  Mean (mm)                                                               5.895819               5.931133
+HVL1 Al  Standard deviation (mm)                                                 0.020477               0.022359
+HVL1 Al  Relative uncertainty (fraction of one)                                  0.003473                0.00377
+HVL2 Al  Mean (mm)                                                               6.238907               6.275384
+HVL2 Al  Standard deviation (mm)                                                 0.017694               0.024303
+HVL2 Al  Relative uncertainty (fraction of one)                                  0.002836               0.003873
+HVL1 Cu  Mean (mm)                                                               0.234631               0.236732
+HVL1 Cu  Standard deviation (mm)                                                  0.00116               0.001351
+HVL1 Cu  Relative uncertainty (fraction of one)                                  0.004946               0.005706
+HVL2 Cu  Mean (mm)                                                               0.262671               0.265111
+HVL2 Cu  Standard deviation (mm)                                                 0.001065               0.001673
+HVL2 Cu  Relative uncertainty (fraction of one)                                  0.004053                0.00631
+Mean energy  Mean (keV)                                                         47.815274              47.968429
+Mean energy  Standard deviation (keV)                                            0.067034               0.104718
+Mean energy  Relative uncertainty (fraction of one)                              0.001402               0.002183
+Air kerma  Mean (uGy)                                                            1.609083               1.622638
+Air kerma  Standard deviation (uGy)                                              0.039089               0.029723
+Air kerma  Relative uncertainty (fraction of one)                                0.024293               0.018318
+Mean conv. coeff.  Mean (Sv/Gy)                                                  1.589867               1.592054
+Mean conv. coeff.  Standard deviation (Sv/Gy)                                    0.001307               0.001274
+Mean conv. coeff.  Relative uncertainty (fraction of one)                        0.000822                 0.0008
+```
+
+### Data files
+
+For these scripts to work you need to have several data files. 
+The content of these files for the previous examples are show below.
+
+CSV file with the **mass energy transfer coefficients** of air in terms of the energy (mu_tr_rho.csv):
+
+```
+E (keV),mu_tr/rho (cm^2/g)
+1.000000,3487.700000000000000
+1.172600,2271.660000000000000
+1.250000,1907.850000000000000
+1.400000,1396.250000000000000
+1.500000,1152.410000000000000
+1.750000,746.850000000000000
+2.000000,510.495000000000000
+2.500000,267.712000000000000
+3.000000,156.677000000000000
+3.206300,128.597000000000000
+3.206301,139.322000000000000
+3.223910,139.220000000000000
+3.250510,136.749000000000000
+3.500000,110.244000000000000
+3.618810,99.946700000000000
+4.000000,74.386300000000000
+5.000000,38.316500000000000
+6.000000,22.138700000000000
+7.000000,13.863800000000000
+8.000000,9.209547628642890
+9.000000,6.407464852253970
+10.000000,4.626920149961950
+12.500000,2.307431530377440
+14.000000,1.615050752537630
+15.000000,1.301309790375540
+17.500000,0.801145676760343
+20.000000,0.525990443101652
+25.000000,0.262079759969996
+28.663300,0.172139443801020
+30.000000,0.150643910752649
+35.000000,0.096166283094939
+40.000000,0.067006659158694
+50.000000,0.040350724533314
+60.000000,0.030060380204255
+70.000000,0.025736225862943
+80.000000,0.023919178948042
+90.000000,0.023273564441493
+100.000000,0.023169137685326
+125.000000,0.023905175732908
+140.000000,0.024501233602389
+150.000000,0.024926643691358
+175.000000,0.025877217107796
+187.083000,0.026274062287156
+200.000000,0.026655131026205
+250.000000,0.027882238669658
+300.000000,0.028683812435718
+324.037000,0.028972447929017
+350.000000,0.029148771809045
+386.867000,0.029415131704691
+400.000000,0.029490249846129
+474.342000,0.029698178702551
+500.000000,0.029685041261757
+574.456000,0.029603764611649
+600.000000,0.029549718949812
+673.537000,0.029405101930449
+700.000000,0.029197657857256
+800.000000,0.028890614121642
+900.000000,0.028390536220701
+1000.000000,0.027936798166738
+1250.000000,0.026719405747041
+1500.000000,0.025621217869820
+1558.930000,0.025359438553807
+1750.000000,0.024631087150390
+1870.830000,0.024240842040503
+2000.000000,0.023753744772526
+2345.210000,0.022671649894621
+2500.000000,0.022309768351513
+3000.000000,0.021132688079239
+3240.370000,0.020639133403572
+3500.000000,0.020121558259145
+4000.000000,0.019347638398287
+4500.000000,0.018700741656237
+5000.000000,0.018185053120065
+6000.000000,0.017326066208925
+6480.740000,0.016966042150857
+7000.000000,0.016690444038446
+8000.000000,0.016199645451199
+9000.000000,0.015809252632524
+```
+
+CSV file with the **monoenergetic air kerma-to-dose-equivalent conversion coefficients** for H*(10) (h_k_h_amb_10.csv):
+
+```
+E (keV),h_k(0 deg) (Sv/Gy)
+7,0.000012
+8,0.000095
+9,0.00145
+10,0.008
+11,0.0331
+12,0.0737
+13,0.127
+14,0.19
+15,0.26
+16,0.326
+17,0.395
+18,0.466
+19,0.538
+20,0.61
+30,1.1
+40,1.47
+50,1.67
+60,1.74
+80,1.72
+100,1.65
+150,1.49
+200,1.4
+300,1.31
+400,1.26
+500,1.23
+600,1.21
+800,1.19
+1000,1.17
+1500,1.15
+2000,1.13
+3000,1.12
+4000,1.11
+5000,1.19
+6000,1.09
+8000,1.08
+10000,1.06
+```
+
+Please note that there **must be no zeros or empy-valued energy gaps** in these files, since it will lead to errors in the 
+interpolation to the energy values of the x-ray spectrum.
+
+## Future developments
+
+In future versions of USpekPy we would like to make the following enhancements:
+
+- Include the **uncertainty contribution** of the monoenergetic air kerma-to-dose-equivalent conversion coefficients.
+- Manage **zeros or empy-valued energy gaps** in data files for mass energy transfer coefficients and monoenergetic 
+air kerma-to-dose-equivalent conversion coefficients.
+- Expand the **documentation** of the package.
+
+If you have any other suggestions please let us know (please check the 
+[Contributing to USpekPy](#contributing-to-uspekpy) section).
+
+## How to get support?
+
+If you need support, please check the **USpekPy** documentation at GitHub
+([README](https://github.com/lmri-met/uspekpy/blob/main/README.md)).
+
+If you need further support, please send an e-mail to 
+[Paz Avilés](mailto:Paz.Aviles@ciemat.es) or to 
+[Xandra Campo](mailto:xandra.campo@ciemat.es).
+
+## Documentation
+
+The official documentation of **USpekPy** is hosted on GitHub.
+Check its [README](https://github.com/lmri-met/uspekpy#README) file for a quick start guide.
+
+## Contributors
+
+**USpekPy** is developed and maintained by [Paz Avilés](https://github.com/pazaviles/) and [Xandra Campo](https://github.com/xandratxan/).
+It is one of the projects of the [Ionizing Radiation Metrology Laboratory (LMRI)](https://github.com/lmri-met/), 
+which is the Spanish National Metrology Institute for ionizing radiation.
+
+## License
+
+**USpekPy** is distributed under the [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) License.
+
+## Contributing to USpekPy
+
+All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
+Please check the **USpekPy** [issues page](https://github.com/lmri-met/uspekpy/issues) if you want to contribute.
