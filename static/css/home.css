@@ -18,6 +18,57 @@
    
 }
 
+/* contenedor de la tabla */
+.table-container {
+    display: flex;
+    justify-content: center; /* centra la tabla horizontalmente */
+    margin: 20px auto;
+}
+/* contenedor de columnas */
+.responsive-columns {
+    display: flex;
+    flex-wrap: wrap;        /* columnas se muevan hacia abajo en pantallas pequeñas */
+    justify-content: space-between;
+    gap: 20px;              /* espacio  columnas */
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.column {
+    flex: 1 1 45%;          /* ocupa el 45% del ancho del contenedor y permite ajustar en pantallas pequeñas */
+    min-width: 300px;      
+}
+
+/* stilo  tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* estilo celdas */
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* estilo filas */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Responsive: columna 2  */
+@media (max-width: 600px) {
+    .responsive-columns {
+        flex-direction: column;
+    }
+
+    .column {
+        width: 100%; /* todo el ancho en columna */
+    }
+}
+
+
 body {
     background-image: 
         linear-gradient(to bottom right, rgba(255, 255, 255, 2), rgba(255, 255, 255, 0.874)), /* Capa de degradado */

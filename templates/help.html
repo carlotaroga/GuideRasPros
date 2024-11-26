@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}USpeakPy Web - Home{% endblock %}
+<!-- Bloque para CSS específico de cada página -->
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-container">
+        <div class="section-1">
+            <h2>Units and uncertainties</h2>
+            <p>All the uncertaintiesare standard uncertainties, i.e., with a coverage factor of k = 1.
+            The units of relative uncertaintiesare expressed as fraction of one. The next table shows 
+            the units of the quantities used in the package.
+            </p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Distance</td>
+                    <td>mm</td>
+                </tr>
+                <tr>
+                    <td>Voltage</td>
+                    <td>kV</td>
+                </tr>
+                <tr>
+                    <td>Angle</td>
+                    <td>deg</td>
+                </tr>
+                <tr>
+                    <td>Energy</td>
+                    <td>keV</td>
+                </tr>
+                <tr>
+                    <td>Fluence</td>
+                    <td>1/cm²</td>
+                </tr>
+                <tr>
+                    <td>Mass energy transfer coefficients of air</td>
+                    <td>cm²/g</td>
+                </tr>
+                <tr>
+                    <td>Air kerma</td>
+                    <td>uGy</td>
+                </tr>
+                <tr>
+                    <td>Mono-energetic K to H conversion coefficients</td>
+                    <td>Sv/Gy</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

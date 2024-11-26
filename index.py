@@ -25,6 +25,10 @@ def home():
 def batch():
     return render_template('batch.html')
 
+@app.route('/help')
+def help():
+    return render_template('help.html')
+
 @app.route('/download_example', methods=['POST'])
 def download_example():
     data = request.get_json()
@@ -64,13 +68,25 @@ def upload_file():
         filename = secure_filename(file.filename)
    
         # Guardar el archivo en la carpeta temporal
-        file_path = os.path.join("./data", filename)
+        # Crear una carpeta temporal para almacenar el archivo
+        temp_dir = tempfile.mkdtemp()
+        file_path = os.path.join(temp_dir, filename)
+   
+        # Guardar el archivo en la carpeta temporal
         file.save(file_path)
+        
+        print(file_path)
+        flash(f'Archivo subido y guardado en: {file_path}')
+        
+        
+        #file_path = os.path.join("./data", filename)
+
+
         # Define the path to the input CSV file
-        my_csv = 'data/input.csv'
+        #my_csv = 'data/input.csv'
 
         # Call the batch_simulation function with the defined input CSV file
-        df = batch_simulation(input_file_path=my_csv)
+        df = batch_simulation(input_file_path=file_path)
 
         # Define the path of the output file where the simulation results will be saved
         my_output_csv = 'output/%s.%s' % (filename, file_format) 
