@@ -7,13 +7,12 @@ from uspekpy import batch_simulation
 
 app = Flask(__name__)
 
-# Extensiones permitidas
+# Allowed extensions
 ALLOWED_EXTENSIONS = {'csv', 'xlsx'}
 
-# Ruta de ejemplo de archivos descargables
-EXAMPLES_FOLDER = 'static/resources/'  # Ajusta según tu estructura
+EXAMPLES_FOLDER = 'static/resources/'  
 
-# Función para verificar si la extensión del archivo es válida
+# Function to check if the file extension is valid
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 @app.route('/')
@@ -34,7 +33,7 @@ def download_example():
     data = request.get_json()
     file_format = data.get('format')
     
-    # Verificar el formato solicitado y asignar el archivo correspondiente
+    # Check the requested format and assign the corresponding file
     if file_format == 'CSV':
         file_path = os.path.join(EXAMPLES_FOLDER, 'input.csv')
     elif file_format == 'Excel':
@@ -42,48 +41,40 @@ def download_example():
     else:
         return jsonify({'error': 'Formato no válido'}), 400
 
-    # Verificar si el archivo existe
+    # Check if the file exists
     if not os.path.exists(file_path):
         return jsonify({'error': 'Archivo de ejemplo no encontrado'}), 404
     
-    # Enviar el archivo para descargar
+    # Send the file to download
     return send_file(file_path, as_attachment=True)
 
 @app.route('/upload_file', methods=['POST'])
 def upload_file():
-    # Comprobar si el formulario tiene un archivo
+    # Check if the form has a file
     if 'input_file' not in request.files:
         flash('No file part')
         return redirect(request.url)
     file = request.files['input_file']
     file_format = request.form.get('file_format') 
-    # si no se selecciono un archivo o el nombre del archivo está vacío
+    # If no file is selected or the file name is empty
     if file.filename == '':
         flash('No selected file')
         return redirect(request.url)
     
-    # Comprobar si el archivo tiene una extension permitida
+    # Check if the file has an allowed extension
     if file and allowed_file(file.filename):
-        # Asegurar el nombre del archivo
+        
         filename = secure_filename(file.filename)
    
-        # Guardar el archivo en la carpeta temporal
-        # Crear una carpeta temporal para almacenar el archivo
+        # Save the file to the temporary folder
         temp_dir = tempfile.mkdtemp()
         file_path = os.path.join(temp_dir, filename)
    
-        # Guardar el archivo en la carpeta temporal
         file.save(file_path)
         
         print(file_path)
         flash(f'Archivo subido y guardado en: {file_path}')
         
-        
-        #file_path = os.path.join("./data", filename)
-
-
-        # Define the path to the input CSV file
-        #my_csv = 'data/input.csv'
 
         # Call the batch_simulation function with the defined input CSV file
         df = batch_simulation(input_file_path=file_path)
