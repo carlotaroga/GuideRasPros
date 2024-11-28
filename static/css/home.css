@@ -1,9 +1,12 @@
 
 .main-container {
-    width: 60%;              
-    margin-left: 0;          
+    display: flex;  
+    flex-direction: column;           
+    justify-content: center;           
+    align-items: center;  
+    width: 60%;                        
     padding: 20px;   
-    margin: 20px 30px 30px;  
+    margin: 0 auto; 
         
 }
 
@@ -12,59 +15,57 @@
 }
 
 .section-2 button {
-    display: block;          /* Asegura que los botones ocupen una fila completa */
+    display: block;          
     margin-top: 10px;
     margin-bottom: 10px;
    
 }
 
-/* contenedor de la tabla */
 .table-container {
     display: flex;
-    justify-content: center; /* centra la tabla horizontalmente */
+    justify-content: center; 
     margin: 20px auto;
 }
-/* contenedor de columnas */
+
 .responsive-columns {
     display: flex;
-    flex-wrap: wrap;        /* columnas se muevan hacia abajo en pantallas pequeñas */
+    flex-wrap: wrap;        
     justify-content: space-between;
-    gap: 20px;              /* espacio  columnas */
+    gap: 20px;             
     margin: 20px auto;
     max-width: 800px;
 }
 
 .column {
-    flex: 1 1 45%;          /* ocupa el 45% del ancho del contenedor y permite ajustar en pantallas pequeñas */
+    flex: 1 1 45%;         
     min-width: 300px;      
 }
 
-/* stilo  tabla */
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* estilo celdas */
+
 td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
 }
 
-/* estilo filas */
 tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Responsive: columna 2  */
+
 @media (max-width: 600px) {
     .responsive-columns {
         flex-direction: column;
     }
 
     .column {
-        width: 100%; /* todo el ancho en columna */
+        width: 100%; 
     }
 }
 

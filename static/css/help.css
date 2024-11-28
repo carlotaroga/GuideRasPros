@@ -1,16 +1,18 @@
 .main-container {
-    width: 60%;              
-    margin-left: 0;          
+    display: flex;  
+    flex-direction: column;           
+    justify-content: center;           
+    align-items: center;  
+    width: 60%;                        
     padding: 20px;   
-    margin: 20px 30px 30px;  
-        
+    margin: 0 auto;  
 }
 
 
 body {
     background-image: 
         linear-gradient(to bottom right, rgba(255, 255, 255, 2), rgba(255, 255, 255, 0.874)), /* Capa de degradado */
-        url('/static/resources/background.jpg');  /* Imagen de fondo */
+        url('/static/resources/background.jpg');  
     background-size: cover; 
     background-repeat: no-repeat;
     background-attachment: fixed;

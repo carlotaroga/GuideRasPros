@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}USpeakPy Web - Home{% endblock %}
-<!-- Bloque para CSS específico de cada página -->
+<!-- Block for specific CSS for each page -->
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
 {% endblock %}
@@ -9,13 +9,13 @@
 {% block content %}
     <div class="main-container">
         <div class="section-1">
-            <h2>Units and uncertainties</h2>
+            <h1>Units and uncertainties</h1>
             <p>All the uncertaintiesare standard uncertainties, i.e., with a coverage factor of k = 1.
             The units of relative uncertaintiesare expressed as fraction of one. The next table shows 
             the units of the quantities used in the package.
             </p>
         </div>
-        <table>
+        <table class="table table-success table-striped">
             <thead>
                 <tr>
                     <th>Quantity</th>
